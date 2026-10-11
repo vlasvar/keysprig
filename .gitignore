@@ -1,0 +1,17 @@
+# Never commit credentials or runtime artifacts
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.dev.vars.*
+logs/
+.next/
+*.tsbuildinfo
+artifacts/
+
+!.dev.vars.example

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" role="img" aria-label="KeySprig icon">
+  <path d="M60 84 C60 70 60 60 62 50" fill="none" stroke="#5DBE8A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M61 56 C40 58 18 44 12 18 C38 16 58 30 61 56 Z" fill="#5DBE8A"/>
+  <path d="M63 52 C66 32 84 20 110 22 C106 46 88 56 63 52 Z" fill="#5DBE8A"/>
+  <circle cx="60" cy="118" r="30" fill="none" stroke="#111111" stroke-width="13"/>
+  <path d="M90 111 H216 L226 118 L216 125 H90 Z" fill="#111111"/>
+  <rect x="164" y="124" width="14" height="26" fill="#111111"/>
+  <rect x="190" y="124" width="14" height="18" fill="#111111"/>
+</svg>

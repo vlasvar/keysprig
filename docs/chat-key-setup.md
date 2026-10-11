@@ -1,0 +1,17 @@
+# Chat-started private key setup
+
+Say “Add my AgentMail API key” to a connected KeySprig MCP client. The client calls `setup_key({provider:"agentmail"})` and presents the returned link. Open it, sign in with the same KeySprig account if necessary, paste the key privately, choose read or read/send and an expiry, then save. Return to the chat and use `call_api` with `key_name: "agentmail"`.
+
+This first release supports an AgentMail configuration preset; it is not a new provider integration. Outbound requests still use the generic proxy. Other providers use the existing dashboard. Read/send allows GET and POST, including other POST operations supported by the provider credential. Restrict that credential at the provider when possible.
+
+The MCP tool accepts no secrets and makes no provider call. The encrypted setup intent hides owner and agent identifiers, expires after 15 minutes and is placed in the URL fragment, not a query or access-log path. It is not a login credential: the private endpoint requires an independently verified human session belonging to the same owner. The browser keeps the encrypted intent in tab-scoped session storage through Google login, then clears it on completion/cancel; key values stay only in form memory and the authenticated HTTPS submission.
+
+Server-side defaults: exact host api.agentmail.to, Authorization with Bearer prefix, GET or GET/POST, 10 requests/minute. Human approval lasts 1, 7 or 30 days. A database transaction locks the active agent, consumes a single-use receipt, stores an encrypted key, adds only that key permission and writes secret-free audit metadata. Existing permissions are preserved. Existing agentmail keys are not overwritten. Invalid, expired, tampered, wrong-owner, used or disconnected-agent requests fail closed. Replay receipts survive key deletion and disappear only with account deletion.
+
+Clients may need to refresh their MCP tool list to discover setup_key. No in-chat secret form or URL-elicitation capability is required; the ordinary tool result includes a secure link usable across clients. Cancel by closing the page; no credential or grant is created before Save.
+
+The saved MCP connection must point to `https://keysprig.xyz/mcp`, never the retired workers.dev hostname. Reauthorize when changing that address and restart/reload the client to refresh its saved tools. A healthy connection exposes both `setup_key` and `call_api`. If only the old call_api description is visible, the client is still using a cached connection. Server initialization includes instructions to route AgentMail setup directly to setup_key, without browsing chat history.
+
+User onboarding lives at /connect and in Agents: copyable agent instructions, the canonical MCP address, and a downloadable /skills/keysprig/SKILL.md. OAuth consent permits an empty selection and clearly labels it “Connect without key access”. That creates a connected agent with no usable keys; setup_key can then request private entry and human approval. A pasted prompt or downloaded skill cannot add MCP capabilities to an unsupported chat client.
+
+Verification: run typecheck/test/build and the opt-in live integration script. It exercises authenticated MCP setup, wrong-owner and agent-token rejection, save/approval, replay protection, fixed policy, secret-free metadata and preservation of existing grants. No email is sent and no AgentMail API call is made by these setup checks.

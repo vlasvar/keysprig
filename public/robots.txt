@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /mcp
+Disallow: /.well-known/
+Sitemap: https://keysprig.xyz/sitemap.xml

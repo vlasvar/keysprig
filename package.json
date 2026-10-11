@@ -1,0 +1,46 @@
+{
+  "name": "keysprig",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 3418",
+    "build": "vite build && tsx scripts/prerender-landing.tsx",
+    "start": "wrangler dev --port 3417 --ip 127.0.0.1 --local",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "preview": "wrangler dev --port 3417 --ip 127.0.0.1 --local",
+    "verify:live": "node scripts/verify-live.mjs",
+    "verify:browser": "node scripts/verify-browser.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "format": "prettier --write web worker scripts tests vite.config.ts wrangler.jsonc index.html"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@supabase/supabase-js": "^2.117.3",
+    "jose": "^6.2.12",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.63.1",
+    "@cloudflare/workers-types": "^5.20261010.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "playwright": "^1.64.0",
+    "prettier": "^3.9.9",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "wrangler": "^4.149.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261006.1": true
+  },
+  "type": "module",
+  "license": "MIT",
+  "description": "Private API key vault and use-only MCP proxy for AI agents"
+}

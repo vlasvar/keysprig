@@ -1,0 +1,4 @@
+SUPABASE_URL="https://your-project.supabase.co"
+SUPABASE_ANON_KEY="your-public-anon-key"
+SUPABASE_SERVICE_ROLE_KEY="replace-privately-with-your-service-role-key"
+VAULT_ROOT_KEY="replace-privately-with-a-base64-encoded-32-byte-random-key"
